@@ -1,61 +1,30 @@
+import React from "react";
+//import { Contract } from "@ethersproject/contracts";
+//import { getDefaultProvider } from "@ethersproject/providers";
 import { useQuery } from "@apollo/react-hooks";
-import { Contract } from "@ethersproject/contracts";
-import { getDefaultProvider } from "@ethersproject/providers";
-import React, { useEffect, useState } from "react";
 
-import { Body, Button, Header, Image, Link } from "./components";
-import logo from "./logo.png";
+import logo from './assets/logo.png';
 import useWeb3Modal from "./hooks/useWeb3Modal";
 
-import { addresses, abis } from "@project/contracts";
+//import { addresses, abis } from "@project/contracts";
 import GET_TRANSFERS from "./graphql/subgraph";
+import Rewards from './components/Rewards';
+import Profile from './components/Profile';
 
-async function readOnChainData() {
-  // Should replace with the end-user wallet, e.g. Metamask
-  const defaultProvider = getDefaultProvider();
-  // Create an instance of an ethers.js Contract
-  // Read more about ethers.js on https://docs.ethers.io/v5/api/contract/contract/
-  const ceaErc20 = new Contract(addresses.ceaErc20, abis.erc20, defaultProvider);
-  // A pre-defined address that owns some CEAERC20 tokens
-  const tokenBalance = await ceaErc20.balanceOf("0x3f8CB69d9c0ED01923F11c829BaE4D9a4CB6c82C");
-  console.log({ tokenBalance: tokenBalance.toString() });
-}
+//async function readOnChainData() {
+//  // Should replace with the end-user wallet, e.g. Metamask
+//  const defaultProvider = getDefaultProvider();
+//  // Create an instance of an ethers.js Contract
+//  // Read more about ethers.js on https://docs.ethers.io/v5/api/contract/contract/
+//  const ceaErc20 = new Contract(addresses.ceaErc20, abis.erc20, defaultProvider);
+//  // A pre-defined address that owns some CEAERC20 tokens
+//  const tokenBalance = await ceaErc20.balanceOf("0x3f8CB69d9c0ED01923F11c829BaE4D9a4CB6c82C");
+//  console.log({ tokenBalance: tokenBalance.toString() });
+//}
 
 function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
-  const [account, setAccount] = useState("");
-  const [rendered, setRendered] = useState("");
-
-  useEffect(() => {
-    async function fetchAccount() {
-      try {
-        if (!provider) {
-          return;
-        }
-
-        // Load the user's accounts.
-        const accounts = await provider.listAccounts();
-        setAccount(accounts[0]);
-
-        // Resolve the ENS name for the first account.
-        const name = await provider.lookupAddress(accounts[0]);
-
-        // Render either the ENS name or the shortened account address.
-        if (name) {
-          setRendered(name);
-        } else {
-          setRendered(account.substring(0, 6) + "..." + account.substring(36));
-        }
-      } catch (err) {
-        setAccount("");
-        setRendered("");
-        console.error(err);
-      }
-    }
-    fetchAccount();
-  }, [account, provider, setAccount, setRendered]);
-
   return (
-    <Button
+    <div className="wallet-button"
       onClick={() => {
         if (!provider) {
           loadWeb3Modal();
@@ -64,9 +33,8 @@ function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
         }
       }}
     >
-      {rendered === "" && "Connect Wallet"}
-      {rendered !== "" && rendered}
-    </Button>
+      {!provider ? "Connect Wallet" : "Disconnect Wallet"}
+    </div>
   );
 }
 
@@ -81,14 +49,43 @@ function App() {
   }, [loading, error, data]);
 
   return (
-    <div>
-      <Header>
-        <WalletButton provider={provider} loadWeb3Modal={loadWeb3Modal} logoutOfWeb3Modal={logoutOfWeb3Modal} />
-      </Header>
-      <Body>
-        <Image src={logo} alt="Qrollecitbles-logo" />
-      </Body>
+    
+  <div class="App" >
+	
+	<nav class="nav">
+    <div className="logo">
+      <img src={logo} alt="Qrowin" />
     </div>
+    <div className="right">
+      
+    </div>
+		<ul class="nav_list">
+			<li class="nav_item"><WalletButton provider={provider} loadWeb3Modal={loadWeb3Modal} logoutOfWeb3Modal={logoutOfWeb3Modal} /></li>
+		</ul>
+	</nav>
+	
+	<div class="hero">
+	<Profile/>
+	</div>
+	
+	<div class="subnav">
+		<div class="subnav_container">
+			<div class="subnav_title">
+				<h1>Recompensas Querétaro City DAO</h1>
+			</div>
+		</div>
+	</div>
+
+	<section >
+  <Rewards />
+	</section>
+	
+	<footer>
+		
+	</footer>
+</div>
+      
+    
   );
 }
 
