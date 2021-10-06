@@ -1,0 +1,125 @@
+
+  .wrapper{
+    width: auto;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0;
+    transform: scale(0.95);
+    transition: box-shadow 0.5s, transform 0.5s;
+    &:hover{
+      transform: scale(1);
+      
+    }
+
+    .layer0 {
+        width: 100%;
+        height: auto;
+        z-index: 0;
+        position: absolute;
+      }
+
+      .layer1 {
+        width: 100%;
+        height: auto;
+        z-index: 1;
+        position: absolute;
+      }
+
+      .layer2 {
+        width: 100%;
+        height: auto;
+        z-index: 2;
+        position: relative;
+      }
+    
+
+
+    .container{
+      width:auto;
+      height:auto;
+    
+      .bottom{
+        width: 200%;
+        height: 20%;
+        transition: transform 0.5s;
+        &.clicked{
+          transform: translateX(-50%);
+        }
+        h1{
+            margin:0;
+            padding:0;
+        }
+        p{
+            margin:0;
+            padding:0;
+        }
+        .left{
+          height:100%;
+          width: 100%;
+          position:relative;
+          float:left;
+
+          .details{
+            padding: 20px;
+          }
+
+        }
+      }
+    }
+    
+    .inside{
+      z-index:9;
+      background: #92879B;
+      width:140px;
+      height:140px;
+      position: absolute;
+      top: -70px;
+      right: -70px;
+      border-radius: 200px 200px 200px 200px;
+      transition: all 0.5s, border-radius 1s, top 1s;
+      overflow: hidden;
+      .icon{
+        position:absolute;
+        right:85px;
+        top:80px;
+        color:white;
+        opacity: 1;
+        font-size: 2em;
+      }
+      &:hover{
+        width:100%;
+        right:0;
+        top:0;
+        border-radius: 50px;
+        height:100%;
+        .icon{
+          opacity: 0;
+          right:15px;
+          top:15px;
+        }
+        .contents{
+          opacity: 1;
+          transform: scale(1);
+          transform: translateY(0);
+        }
+      }
+      .contents{
+        padding: 5%;
+        opacity: 0;
+        transform: scale(0.5);
+        transform: translateY(-200%);
+        transition: opacity 0.2s, transform 0.8s;
+        table{
+          text-align:left;
+          width:100%;
+        }
+        h1, p, table{
+          color: white;
+        }
+        p{
+          font-size:13px;
+        }
+      }
+    }
+  }
