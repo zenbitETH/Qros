@@ -3,7 +3,7 @@ import layer0 from "../assets/Layer 0.png";
 import layer1 from "../assets/Layer 1.png";
 import layer2 from "../assets/Layer 2.png";
 
-const Verification = () => {
+const Profile = () => {
 
 return (
   <div class="wrapper">
@@ -41,4 +41,4 @@ return (
 )
 }
 
-export default Verification;
+export default Profile;
