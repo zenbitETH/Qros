@@ -1,10 +1,10 @@
-import "./index.css";
-
-import { ApolloProvider } from "@apollo/react-hooks";
-import ApolloClient from "apollo-boost";
 import React from "react";
 import ReactDOM from "react-dom";
-
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "@apollo/react-hooks";
+import "./styles/index.css";
+import "./styles/cards.scss";
+import "./styles/profile.scss";
 import App from "./App";
 
 // You should replace this url with your own and put it into a .env file
