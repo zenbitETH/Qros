@@ -1,4 +1,4 @@
-pragma solidity ^0.7.6;
+pragma solidity ^0.8.0;
 
 
 /**
@@ -79,7 +79,5 @@ contract QrollectibleStorage
     address nftAddress
   );
 
-  /*event ChangedPublicationFee(uint256 publicationFee);
-  event ChangedOwnerCutPerMillion(uint256 ownerCutPerMillion);*/
   
 }
