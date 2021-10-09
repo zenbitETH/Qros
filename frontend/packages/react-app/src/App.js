@@ -7,9 +7,12 @@ import logo from './assets/logo.png';
 import useWeb3Modal from "./hooks/useWeb3Modal";
 
 //import { addresses, abis } from "@project/contracts";
-import GET_TRANSFERS from "./graphql/subgraph";
-import Rewards from './components/Rewards';
-import Profile from './components/Profile';
+import Profile from "./components/Profile";
+import Citizens from './components/Citizens';
+import Academy from './components/Academy';
+import Culture from './components/Culture';
+import Economy from './components/Economy';
+
 
 //async function readOnChainData() {
 //  // Should replace with the end-user wallet, e.g. Metamask
@@ -77,7 +80,10 @@ function App() {
 	</div>
 
 	<section >
-  <Rewards />
+  <Citizens/>
+  <Culture/>
+  <Academy/>
+  <Economy/>
 	</section>
 	
 	<footer>
