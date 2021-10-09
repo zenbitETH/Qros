@@ -1,15 +1,18 @@
 import React from "react";
 //import { Contract } from "@ethersproject/contracts";
 //import { getDefaultProvider } from "@ethersproject/providers";
-import { useQuery } from "@apollo/react-hooks";
+
 
 import logo from './assets/logo.png';
 import useWeb3Modal from "./hooks/useWeb3Modal";
 
 //import { addresses, abis } from "@project/contracts";
-import GET_TRANSFERS from "./graphql/subgraph";
-import Rewards from './components/Rewards';
-import Profile from './components/Profile';
+import Profile from "./components/Profile";
+import Citizens from './components/Citizens';
+import Academy from './components/Academy';
+import Culture from './components/Culture';
+import Economy from './components/Economy';
+
 
 //async function readOnChainData() {
 //  // Should replace with the end-user wallet, e.g. Metamask
@@ -39,14 +42,14 @@ function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
 }
 
 function App() {
-  const { loading, error, data } = useQuery(GET_TRANSFERS);
+  //const { loading, error, data } = useQuery(GET_TRANSFERS);
   const [provider, loadWeb3Modal, logoutOfWeb3Modal] = useWeb3Modal();
 
-  React.useEffect(() => {
-    if (!loading && !error && data && data.transfers) {
-      console.log({ transfers: data.transfers });
-    }
-  }, [loading, error, data]);
+ // React.useEffect(() => {
+ //   if (!loading && !error && data && data.transfers) {
+ //     console.log({ transfers: data.transfers });
+ //   }
+ // }, [loading, error, data]);
 
   return (
     
@@ -77,7 +80,10 @@ function App() {
 	</div>
 
 	<section >
-  <Rewards />
+  <Citizens/>
+  <Culture/>
+  <Academy/>
+  <Economy/>
 	</section>
 	
 	<footer>

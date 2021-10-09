@@ -1,7 +1,8 @@
 import React from "react";
-import layer0 from "../assets/Layer 0.png";
-import layer1 from "../assets/Layer 1.png";
-import layer2 from "../assets/Layer 2.png";
+import layer0 from "../assets/BG Citizen Lv2.png";
+import layer1 from "../assets/Citizen M Lv1.png";
+import layer2 from "../assets/Ac Citizen Lv3.png";
+import layer3 from "../assets/Ac Pet Lover Lv1.png";
 
 const Profile = () => {
 
@@ -11,6 +12,7 @@ return (
       <img src={layer0} class="layer0" alt="Cards Image"/>
       <img src={layer1} class="layer1" alt="Cards Image"/>
       <img src={layer2} class="layer2" alt="Cards Image"/>
+      <img src={layer3} class="layer3" alt="Cards Image"/>
     
   <div class="container">
   <span class="bottom">

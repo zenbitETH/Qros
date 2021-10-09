@@ -13,11 +13,30 @@ body {
 }
 
 .logo {
-  height: 2em;
+  height: 3em;
   display: flex;
-  margin: 1em 0 1em 1em ;
+  margin: 2em 0 0em 0em ;
 }
 
+.wallet-button {
+  padding: 1em;
+  color: white;
+  background-color: #00000068;
+  border-radius: 25px;
+  width: 100%;
+  position: relative;
+  border-color: transparent;
+  font-size: 1.2em;
+  margin-top: 3em;
+}
+
+.wallet-button:hover {
+  background: linear-gradient(75deg, #2b284a00, #ff9500d7, #ff9500d7, #ff950069, #2b284a00);
+  background-size: 500% 500%;
+  animation: gradient 2s ease infinite;
+  cursor: pointer;
+  
+}
 
 .nav {
 	position: sticky;
@@ -26,7 +45,7 @@ body {
 	align-items: center;
 	height: 60px;
 	top: 0;
-  background: #535c64;
+  background: #383F51;
 }
 
 .subnav {
@@ -34,6 +53,7 @@ body {
 	bottom: 0;
 	top: 60px; 
 }
+
 .subnav_container {
   align-items: baseline;
   display: flex;
@@ -70,16 +90,17 @@ body {
 	align-items: center;
 	min-height: 100vh;
   margin-top: -7.5vh;
-	background: #146e7a;
+	background: #383F51;
 }
 
 h1 {
   font-size: 2em;
-  text-align: center;
+  text-align: left;
+  color: #fff;
 }
 
 .subnav {
-	background: #fff;
+	background: #dddbf1;
 	border-bottom: 1px solid #222;
 }
 
