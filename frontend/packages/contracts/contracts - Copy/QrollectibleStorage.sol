@@ -1,4 +1,3 @@
-// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 
@@ -40,7 +39,7 @@ contract QrollectibleStorage
     // Owner of the NFT
     address seller;
     // NFT registry address
-    address tokenAddress;
+    address nftAddress;
     // Price (in wei) for the published item
     uint256 price;
     // Time when this sale ends
@@ -59,7 +58,7 @@ contract QrollectibleStorage
     bytes32 id,
     uint256 indexed assetId,
     address indexed seller,
-    address tokenAddress,
+    address nftAddress,
     uint256 priceInWei,
     uint256 expiresAt
   );
@@ -68,7 +67,7 @@ contract QrollectibleStorage
     bytes32 id,
     uint256 indexed assetId,
     address indexed seller,
-    address tokenAddress,
+    address nftAddress,
     uint256 totalPrice,
     address indexed buyer
   );
@@ -77,7 +76,7 @@ contract QrollectibleStorage
     bytes32 id,
     uint256 indexed assetId,
     address indexed seller,
-    address tokenAddress
+    address nftAddress
   );
 
   
