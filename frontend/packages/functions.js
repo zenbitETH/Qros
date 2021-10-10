@@ -1,3 +1,7 @@
+import Moralis from "Moralis"
+
+const functions = () => {
+
 //######################################
 // Contract Addresses and Moralis Init
 //######################################
@@ -12,6 +16,7 @@ const DAO_CONTRACT_ADDRESS = "0xA7a75b9B0712a7923686C0FC4b04856F1cd0d00E";
 
 init = async () => {
     hideElement(userItemsSection);
+    
     window.web3 = await Moralis.Web3.enable();
     window.tokenContract = new web3.eth.Contract(tokenContractAbi, TOKEN_CONTRACT_ADDRESS);
     window.marketplaceContract = new web3.eth.Contract(marketplaceContractAbi, MARKETPLACE_CONTRACT_ADDRESS);
@@ -135,12 +140,5 @@ createItem = async () => {
 
 //#########################################################################################
 
-
-
-
-
-
-
-
-
-
+}
+export default functions;

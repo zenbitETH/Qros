@@ -1,10 +1,13 @@
 import React from "react";
 //import { Contract } from "@ethersproject/contracts";
 //import { getDefaultProvider } from "@ethersproject/providers";
-
-
+import { useMoralis } from "react-moralis";
 import logo from './assets/logo.png';
-import useWeb3Modal from "./hooks/useWeb3Modal";
+import Moralis from "moralis";
+import Web3 from "web3";
+import {tokenContractAbi} from './abi.js';
+import {marketplaceAbi} from './abi.js';
+
 
 //import { addresses, abis } from "@project/contracts";
 import Profile from "./components/Profile";
@@ -13,37 +16,76 @@ import Academy from './components/Academy';
 import Culture from './components/Culture';
 import Economy from './components/Economy';
 
+import StarterF from "./assets/Citizen F Lv1.png";
+import StarterM from "./assets/Citizen M Lv1.png"
+import BGLV1 from "./assets/BG Citizen Lv2.png"
+import AccesoryLv3 from "./assets/Ac Citizen Lv3.png"
 
-//async function readOnChainData() {
-//  // Should replace with the end-user wallet, e.g. Metamask
-//  const defaultProvider = getDefaultProvider();
-//  // Create an instance of an ethers.js Contract
-//  // Read more about ethers.js on https://docs.ethers.io/v5/api/contract/contract/
-//  const ceaErc20 = new Contract(addresses.ceaErc20, abis.erc20, defaultProvider);
-//  // A pre-defined address that owns some CEAERC20 tokens
-//  const tokenBalance = await ceaErc20.balanceOf("0x3f8CB69d9c0ED01923F11c829BaE4D9a4CB6c82C");
-//  console.log({ tokenBalance: tokenBalance.toString() });
+
+const appId = "TOYUgAQy6p6Sx3uKprDKcRRjU7AXF7DFxdSNlR2y";
+const serverUrl = "https://2tmlqxwkknpp.moralishost.com:2053/server";
+
+const TOKEN_CONTRACT_ADDRESS = "0x34480e1169E9D78F39eDFD6D8293d8A348e144a4";  
+const MARKETPLACE_CONTRACT_ADDRESS = "0x4C454aF41F77DDf442F1BA8C1E9D65D2D6F04e4f";    
+const ERC20_TOKEN_CONTRACT_ADDRESS = "0x12f961f564a5fb12b938d8864b6faf5be3abf10b";
+const DAO_CONTRACT_ADDRESS = "0xA7a75b9B0712a7923686C0FC4b04856F1cd0d00E";
+
+//const mintNFT = async(name, descr,filepath) => {
+//
+//  const web3 =  await Moralis.Web3.enable();
+//  const tokenContract = new web3.eth.Contract(tokenContractAbi, TOKEN_CONTRACT_ADDRESS);
+//  const marketplaceContract = new web3.eth.Contract(marketplaceAbi,//MARKETPLACE_CONTRACT_ADDRESS);
+//  const user = await Moralis.User.current();
+//  const userAddress = user.get('ethAddress');
+//
+//  const metadata = {
+//    name: name,
+//    description: descr,
+//    image: filepath
+////};
+//
+//const nftFileMetadataFile = new Moralis.File("metadata.json", {base64 : btoa(JSON.stringify//(metadata))});
+//
+//nftFileMetadataFile.saveIPFS();
+//
+//const metadataUrl = nftFileMetadataFile.ipfs();
+//
+//  const receipt = await tokenContract.methods.createItem(metadataUrl).send({from: //userAddress});
+//  console.log(receipt);
+//  
+//  //return token ID
+//  return receipt.events.Transfer.returnValues.tokenId;
 //}
-
-function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
-  return (
-    <div className="wallet-button"
-      onClick={() => {
-        if (!provider) {
-          loadWeb3Modal();
-        } else {
-          logoutOfWeb3Modal();
-        }
-      }}
-    >
-      {!provider ? "Connect Wallet" : "Disconnect Wallet"}
-    </div>
-  );
-}
-
+//
 function App() {
   //const { loading, error, data } = useQuery(GET_TRANSFERS);
-  const [provider, loadWeb3Modal, logoutOfWeb3Modal] = useWeb3Modal();
+
+  
+ 
+  function BtnConnect() {
+  const {authenticate, isAuthenticated, logout} = useMoralis();
+
+  if(isAuthenticated){
+    return(
+    <div class="wallet-button">
+      <div onClick={() => logout()}>Logout</div>
+    </div>
+    );
+  }
+  return ( 
+  <div onClick={() => authenticate()} class="wallet-button">Connect Wallet</div>
+  );
+  }
+
+//needs to be called on page load
+const Moralis = require('moralis');
+
+ function init(){
+   const web3 =  Moralis.web3.enable;
+    //window.web3 = await Moralis.Web3.enable();
+    window.tokenContract = new Web3.eth.Contract(tokenContractAbi, TOKEN_CONTRACT_ADDRESS);
+    window.marketplaceContract = new Web3.eth.Contract(marketplaceAbi, MARKETPLACE_CONTRACT_ADDRESS);
+  }
 
  // React.useEffect(() => {
  //   if (!loading && !error && data && data.transfers) {
@@ -51,36 +93,112 @@ function App() {
  //   }
  // }, [loading, error, data]);
 
+
   return (
+
     
   <div class="App" >
 	
 	<nav class="nav">
     <div className="logo">
-      <img src={logo} alt="Qrowin" />
+      <img src={logo} alt="Qros" />
     </div>
     <div className="right">
       
     </div>
 		<ul class="nav_list">
-			<li class="nav_item"><WalletButton provider={provider} loadWeb3Modal={loadWeb3Modal} logoutOfWeb3Modal={logoutOfWeb3Modal} /></li>
+			<li class="nav_item"><BtnConnect class="wallet-button"/></li>
 		</ul>
 	</nav>
 	
 	<div class="hero">
-	<Profile/>
+	  <div class="center"><Profile/></div>
 	</div>
 	
 	<div class="subnav">
 		<div class="subnav_container">
 			<div class="subnav_title">
-				<h1>Recompensas Querétaro City DAO</h1>
+			  <span class="center">Rewards Querétaro City DAO</span>
 			</div>
 		</div>
 	</div>
 
-	<section >
-  <Citizens/>
+	<section>
+  <div class="card__collection clear-fix">
+  <h1>Citizens</h1>
+  <div class="cards cards--three">
+  <img src={StarterF} class="img-responsive" alt="Cards Image"/>
+    <span class="cards--three__rect-1">
+      <span class="shadow-1"></span>
+      <div class="traitdes">Get 1000 TARO Tokens</div>
+      <div class="center">
+        <div class="mint-button">Mint </div>
+      </div>
+    </span>
+    <span class="cards--three__rect-2">
+      <span class="shadow-2"></span>
+    </span>
+    <span class="cards--three__circle"></span>
+    <ul class="cards--three__list">
+      <li><i >Lv1</i></li>
+    </ul>
+  </div>
+
+  <div class="cards cards--three">
+  <img src={StarterM} class="img-responsive" alt="Cards Image"/>
+    <span class="cards--three__rect-1">
+      <span class="shadow-1"></span>
+      <div class="traitdes">Get 1000 TARO Tokens</div>
+      <div class="center">
+        <div class="mint-button">Mint </div>
+      </div>
+    </span>
+    
+    <span class="cards--three__rect-2">
+      <span class="shadow-2"></span>
+    </span>
+    <span class="cards--three__circle"></span>
+    <ul class="cards--three__list">
+      <li><i >Lv1</i></li>
+    </ul>
+  </div>
+
+  <div class="cards cards--three">
+  <img src={BGLV1} class="img-responsive" alt="Cards Image"/>
+    <span class="cards--three__rect-1">
+      <span class="shadow-1"></span>
+      <div class="traitdes">Get 2000 TARO Tokens</div>
+      <div class="center">
+        <div class="mint-button">Mint </div>
+      </div>
+    </span>
+    <span class="cards--three__rect-2">
+      <span class="shadow-2"></span>
+    </span>
+    <span class="cards--three__circle"></span>
+    <ul class="cards--three__list">
+      <li><i >Lv2</i></li>
+    </ul>
+  </div>
+
+  <div class="cards cards--three">
+  <img src={AccesoryLv3} class="img-responsive" alt="Cards Image"/>
+    <span class="cards--three__rect-1">
+      <span class="shadow-1"></span>
+      <div class="traitdes">Get 3000 TARO Tokens</div>
+      <div class="center">
+        <div class="mint-button">Mint </div>
+      </div>
+    </span>
+    <span class="cards--three__rect-2">
+      <span class="shadow-2"></span>
+    </span>
+    <span class="cards--three__circle"></span>
+    <ul class="cards--three__list">
+      <li><i >Lv3</i></li>
+    </ul>
+  </div>
+</div>
   <Culture/>
   <Academy/>
   <Economy/>
