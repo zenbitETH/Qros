@@ -6,6 +6,7 @@ import AccesoryLv3 from "../assets/Ac Citizen Lv3.png"
 
 const Citizens = () => {
 
+
 return (
   <div class="card__collection clear-fix">
   <h1>Citizens</h1>
@@ -13,7 +14,10 @@ return (
   <img src={StarterF} class="img-responsive" alt="Cards Image"/>
     <span class="cards--three__rect-1">
       <span class="shadow-1"></span>
-      <p>Mint</p>
+      <div class="traitdes">jhgvjghf</div>
+      <div class="center">
+        <div class="mint-button">Mint</div>
+      </div>
     </span>
     <span class="cards--three__rect-2">
       <span class="shadow-2"></span>
