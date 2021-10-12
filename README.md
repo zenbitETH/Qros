@@ -1,4 +1,5 @@
 # Qros
+## Developed on ETH Online 2021 
 
 Qros is an NFT based reward system to gamify interactions on the Queretaro City DAO. Users will get the Qro Citizen role as a base character when get validated on the governance DApp. User can customize their character with backgrounds, clothes, and accessories layers depending on their skills and engagement in the Querétaro City DAO activities. The first wave includes these roles:
 
@@ -34,3 +35,5 @@ Polygon Mumbai testnet
 - VoTARO Governor Alpha - 0xA7a75b9B0712a7923686C0FC4b04856F1cd0d00E
 - Qros Marketplace - 0x4C454aF41F77DDf442F1BA8C1E9D65D2D6F04e4f
 
+# ETH Online 2021 Showcase
+https://showcase.ethglobal.com/ethonline2021/qros
